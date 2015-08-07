@@ -1,13 +1,20 @@
-# require('capybara/rspec')
-# require('./app')
-# Capybara.app = Sinatra::Application
-# set(:show_exceptions, false)
-#
-# describe('the making change process', {:type => :feature}) do
-#   it('processes the user entry of cents and returns the coins necessary to make change') do
-#     visit('/')
-#     fill_in('cents', :with => 41)
-#     click_button('Make change!')
-#     expect(page).to have_content('1 quarter')
-#   end
-# end
+require('rspec')
+require('./lib/coin_machine.rb')
+
+describe('Fixnum#coin_machine') do
+  it('returns the change when the amount is less than 5') do
+    expect((3).coin_machine()).to(eq([0,0,0,3]))
+  end
+
+  it('returns pennies and nickels for an amount greater than 5 and less than 10') do
+    expect((9).coin_machine()).to(eq([0,0,1,4]))
+  end
+
+  it('returns pennies and nickels and dimes for an amount greater than 10 and less than 25') do
+    expect((17).coin_machine()).to(eq([0,1,1,2]))
+  end
+
+  it('returns the correct quantity of pennies, nickels, dimes and quarters for an amount greater than 25 and less than 100') do
+    expect((41).coin_machine()).to(eq([1,1,1,1]))
+  end
+end

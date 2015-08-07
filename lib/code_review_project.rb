@@ -1,32 +1,22 @@
-class Phrase
-  attr_accessor :words
+class String
 
-  def initialize(words)
-    @words = words
-  end
+    alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    counter = 0
+    current = false
 
-  def word_count
-    word_list = {}
-    word.split(" ").each do |word|
-      word_list = process_word_in_list(word, word_list)
+    for i in 0...string.length
+        prev = current
+        current = false
+        for j in 0...alphabet.length
+            if string[i] == alphabet[j]
+                current = true
+                if prev == false
+                    counter += 1
+                end
+            end
+        end
     end
-    word_list
-  end
 
+    return counter
 
-
-
-
-    # Split string based on one or more whitespace characters.
-    # ... Then return the length of the array.
-    value.split(/\s+/).length
 end
-
-value = "To be or not to be, that is the question."
-puts wordcount(value)
-
-value = "Stately, plump Buck Mulligan came from the stairhead"
-puts wordcount(value)
-
-puts wordcount " "
-puts wordcount ""
