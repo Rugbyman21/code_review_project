@@ -5,12 +5,18 @@ class Phrase
     @words = words
   end
 
-def word_count
-  word_list = {}
-  word.split(" ").each do |word|
-    word_list = process_word_in_list(word, word_list)
+  def word_count
+    word_list = {}
+    word.split(" ").each do |word|
+      word_list = process_word_in_list(word, word_list)
+    end
+    word_list
   end
-  word_list
+
+
+
+
+
     # Split string based on one or more whitespace characters.
     # ... Then return the length of the array.
     value.split(/\s+/).length
